@@ -40,6 +40,11 @@ const prompts = [
         checked: !!defaults.platforms['ios']
       },
       {
+        name: 'Windows',
+        value: 'windows',
+        checked: !!defaults.platforms['windows']
+      },
+      {
         name: 'Browser',
         value: 'browser',
         checked: !!defaults.platforms['browser']

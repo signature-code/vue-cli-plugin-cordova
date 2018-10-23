@@ -12,11 +12,13 @@ const defaultModes = {
   'cordova-serve-ios': 'development',
   'cordova-build-ios': 'production',
   'cordova-serve-browser': 'development',
-  'cordova-build-browser': 'production'
+  'cordova-build-browser': 'production',
+  'cordova-build-windows': 'production',
+  'cordova-serve-windows': 'development'
 }
 
 module.exports = (api, options) => {
-  const cordovaPath = options.pluginOptions.cordovaPath || defaults.cordovaPath
+  const cordovaPath = (options.pluginOptions ? options.pluginOptions.cordovaPath : undefined) || defaults.cordovaPath
   const srcCordovaPath = api.resolve(cordovaPath)
 
   const getPlatformPath = platform => {
@@ -246,6 +248,15 @@ module.exports = (api, options) => {
   api.registerCommand('cordova-build-ios', async args => {
     return await runBuild('ios', args)
   })
+
+  api.registerCommand('cordova-serve-windows', async args => {
+    return await runServe('windows', args)
+  })
+
+  api.registerCommand('cordova-build-windows', async args => {
+    return await runBuild('windows', args)
+  })
+
 
   api.registerCommand('cordova-serve-browser', async args => {
     args.open = true
